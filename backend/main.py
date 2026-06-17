@@ -4,9 +4,11 @@ from typing import Any
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings
+from pymongo.errors import ServerSelectionTimeoutError
 
 
 class Settings(BaseSettings):
@@ -102,7 +104,12 @@ def clean_document(document: dict[str, Any] | None) -> dict[str, Any] | None:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    client = AsyncIOMotorClient(settings.mongodb_uri)
+    client = AsyncIOMotorClient(
+        settings.mongodb_uri,
+        serverSelectionTimeoutMS=8000,
+        connectTimeoutMS=8000,
+        socketTimeoutMS=8000,
+    )
     app.state.mongo_client = client
     app.state.db = client[settings.mongodb_db]
     yield
@@ -123,6 +130,22 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.exception_handler(ServerSelectionTimeoutError)
+async def mongo_timeout_handler(_, exc: ServerSelectionTimeoutError):
+    return JSONResponse(
+        status_code=503,
+        content={
+            "detail": "Não foi possível conectar ao MongoDB.",
+            "check": [
+                "Confira MONGODB_URI nas variáveis de ambiente do Render.",
+                "Confira usuário e senha do MongoDB Atlas.",
+                "Confira se o IP está liberado em Network Access no Atlas.",
+            ],
+            "error": str(exc),
+        },
+    )
 
 
 @app.get("/")
@@ -152,6 +175,12 @@ async def favicon():
 @app.get("/health")
 async def health():
     return {"status": "online", "timestamp": datetime.now(timezone.utc).isoformat()}
+
+
+@app.get("/db-check")
+async def db_check():
+    await app.state.mongo_client.admin.command("ping")
+    return {"status": "connected", "database": settings.mongodb_db}
 
 
 @app.get("/api/stats")
