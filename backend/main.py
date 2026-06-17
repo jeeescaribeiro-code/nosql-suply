@@ -21,6 +21,8 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+configured_origins = [origin.strip() for origin in settings.frontend_origins.split(",") if origin.strip()]
+allow_all_origins = "*" in configured_origins
 
 
 class Lote(BaseModel):
@@ -122,11 +124,11 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-origins = [origin.strip() for origin in settings.frontend_origins.split(",") if origin.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"] if allow_all_origins else configured_origins,
+    allow_origin_regex=None if allow_all_origins else r"https?://([a-z0-9-]+\.)*free\.nf",
+    allow_credentials=False if allow_all_origins else True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
