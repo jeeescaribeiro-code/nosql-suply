@@ -1,4 +1,4 @@
-const API_BASE_URL = window.API_BASE_URL || "const API_BASE_URL = "https://nosql-suply.onrender.com";
+const API_BASE_URL = "https://nosql-suply.onrender.com";
 
 const fallback = {
   stats: {
@@ -50,7 +50,6 @@ async function getJson(path, fallbackValue) {
   try {
     const response = await fetch(`${API_BASE_URL}${path}`);
     if (!response.ok) throw new Error(`Erro ${response.status}`);
-    state.apiOnline = true;
     return await response.json();
   } catch (error) {
     state.apiOnline = false;
@@ -279,6 +278,7 @@ function setupReveal() {
 async function init() {
   setupEvents();
   setupReveal();
+  state.apiOnline = true;
   const [stats, produtos, alertas, locais, notas] = await Promise.all([
     getJson("/api/stats", fallback.stats),
     getJson("/api/produtos", fallback.produtos),
@@ -293,6 +293,13 @@ async function init() {
   state.notas = notas;
   state.selected = produtos[0];
   renderStats(stats);
+  const apiStatus = $("#apiStatus");
+  if (apiStatus) {
+    apiStatus.textContent = state.apiOnline
+      ? `API conectada: ${API_BASE_URL}`
+      : `API não conectada: confira CORS, API_BASE_URL ou MongoDB em ${API_BASE_URL}`;
+    apiStatus.dataset.state = state.apiOnline ? "online" : "offline";
+  }
   $("#alertCount").textContent = alertas.length;
   renderList();
   renderDetails();
