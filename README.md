@@ -6,6 +6,12 @@ Projeto academico de Banco de Dados NoSQL para modelar e demonstrar um sistema d
   <img src="./files/tracking-animation.svg" width="860" alt="Animacao do sistema de rastreamento Origem Certa">
 </p>
 
+<p align="center">
+  <a href="https://nosql-suply.free.nf">
+    <strong>Abrir o site aquiii!</strong>
+  </a>
+</p>
+
 ## Ideia do sistema
 
 O sistema **Origem Certa** acompanha produtos, lotes, locais, movimentacoes, notas fiscais, alertas e usuarios autorizados. A proposta e permitir que uma organizacao consulte rapidamente a origem de um produto, acompanhe sua rota logistica e identifique sinais de fraude, desvio ou divergencia documental.
