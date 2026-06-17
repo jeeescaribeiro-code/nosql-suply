@@ -1,0 +1,92 @@
+<svg width="920" height="320" viewBox="0 0 920 320" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-labelledby="title desc">
+  <title id="title">Sistema de rastreamento Origem Certa</title>
+  <desc id="desc">Imagem animada simples mostrando uma rota de entrega, um produto verificado e indicadores de rastreamento.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F5F7FA"/>
+      <stop offset="100%" stop-color="#E7F7F5"/>
+    </linearGradient>
+    <linearGradient id="main" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#12355B"/>
+      <stop offset="55%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#12355B" flood-opacity="0.16"/>
+    </filter>
+    <style>
+      .title { font: 800 18px Arial, sans-serif; fill: #12355B; letter-spacing: 3px; }
+      .text { font: 400 13px Arial, sans-serif; fill: #64748B; }
+      .code { font: 700 12px "Courier New", monospace; fill: #12355B; }
+      .route { stroke: #2563EB; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 16 14; fill: none; animation: routeMove 2.8s linear infinite; }
+      .route-soft { stroke: #14B8A6; stroke-width: 16; stroke-linecap: round; opacity: .08; fill: none; }
+      .wheel { transform-box: fill-box; transform-origin: center; animation: spin .8s linear infinite; }
+      .signal { animation: signal 2.4s ease-in-out infinite; }
+      .bar1 { animation: bar1 3s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom; }
+      .bar2 { animation: bar2 3s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom; }
+      .bar3 { animation: bar3 3s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom; }
+      @keyframes routeMove { to { stroke-dashoffset: -60; } }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @keyframes signal { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+      @keyframes bar1 { 0%,100% { transform: scaleY(.72); } 50% { transform: scaleY(1); } }
+      @keyframes bar2 { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(.7); } }
+      @keyframes bar3 { 0%,100% { transform: scaleY(.82); } 50% { transform: scaleY(1.08); } }
+    </style>
+  </defs>
+
+  <rect width="920" height="320" rx="28" fill="url(#bg)"/>
+
+  <text x="44" y="52" class="title">ORIGEM CERTA</text>
+  <text x="44" y="78" class="text">rastreamento, autenticidade e auditoria com agregados NoSQL</text>
+
+  <path class="route-soft" d="M72 218 H220 C300 218 310 146 390 146 H560 C640 146 652 218 730 218 H848"/>
+  <path id="delivery-route" class="route" d="M72 218 H220 C300 218 310 146 390 146 H560 C640 146 652 218 730 218 H848"/>
+
+  <g filter="url(#shadow)">
+    <circle cx="86" cy="218" r="20" fill="#FFFFFF" stroke="#14B8A6" stroke-width="3"/>
+    <circle class="signal" cx="86" cy="218" r="32" fill="none" stroke="#14B8A6" stroke-width="2" opacity=".35"/>
+    <text x="55" y="264" class="text">origem</text>
+
+    <circle cx="456" cy="146" r="20" fill="#FFFFFF" stroke="#2563EB" stroke-width="3"/>
+    <circle class="signal" cx="456" cy="146" r="32" fill="none" stroke="#2563EB" stroke-width="2" opacity=".35"/>
+    <text x="416" y="108" class="text">validacao</text>
+
+    <circle cx="834" cy="218" r="20" fill="#FFFFFF" stroke="#22C55E" stroke-width="3"/>
+    <circle class="signal" cx="834" cy="218" r="32" fill="none" stroke="#22C55E" stroke-width="2" opacity=".35"/>
+    <text x="810" y="292" class="text">destino</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <g>
+      <animateMotion dur="6.5s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#delivery-route" xlink:href="#delivery-route"/>
+      </animateMotion>
+      <g transform="translate(-56 -36) scale(.72)">
+        <rect x="0" y="0" width="92" height="44" rx="12" fill="url(#main)"/>
+        <path d="M92 12h46l18 32H92z" fill="#2563EB"/>
+        <path d="M108 18h22l8 16h-30z" fill="#DBEAFE"/>
+        <rect x="12" y="12" width="30" height="8" rx="4" fill="#FFFFFF" opacity=".35"/>
+        <circle class="wheel" cx="28" cy="50" r="11" fill="#12355B"/>
+        <circle class="wheel" cx="114" cy="50" r="11" fill="#12355B"/>
+        <circle cx="28" cy="50" r="4" fill="#FFFFFF"/>
+        <circle cx="114" cy="50" r="4" fill="#FFFFFF"/>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(612 62)" filter="url(#shadow)">
+    <rect class="bar1" x="0" y="96" width="52" height="110" rx="16" fill="url(#main)" opacity=".62"/>
+    <rect class="bar2" x="72" y="56" width="58" height="150" rx="18" fill="url(#main)" opacity=".78"/>
+    <rect class="bar3" x="154" y="18" width="66" height="188" rx="20" fill="url(#main)"/>
+    <rect x="114" y="134" width="178" height="72" rx="20" fill="#FFFFFF" opacity=".94"/>
+    <rect x="134" y="149" width="138" height="24" rx="12" fill="#DCFCE7"/>
+    <text x="176" y="165" class="code" fill="#166534">verificado</text>
+    <text x="134" y="191" class="code">CAF-ORG-0001</text>
+  </g>
+
+  <g transform="translate(44 112)" filter="url(#shadow)">
+    <rect width="190" height="68" rx="18" fill="#FFFFFF" opacity=".92"/>
+    <text x="20" y="28" class="code">120 produtos</text>
+    <text x="20" y="50" class="text">monitorados em tempo real</text>
+  </g>
+</svg>
