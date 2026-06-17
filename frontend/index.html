@@ -5,14 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Plataforma de rastreamento, verificação de autenticidade e prevenção de fraudes na cadeia de suprimentos."
+      content="Origem Certa e um sistema de rastreamento de cadeia de suprimentos para monitorar produtos, lotes, movimentacoes, alertas e notas fiscais com apoio de NoSQL, FastAPI e MongoDB."
     />
-    <title>Origem Certa | Rastreamento de produtos</title>
+    <meta
+      name="keywords"
+      content="rastreamento de produtos, cadeia de suprimentos, NoSQL, MongoDB, FastAPI, autenticidade, auditoria, alertas de fraude"
+    />
+    <meta name="author" content="Origem Certa" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#12355B" />
+    <link rel="canonical" href="https://nosql-suply.free.nf/" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Origem Certa" />
+    <meta property="og:title" content="Origem Certa | Rastreamento de cadeia de suprimentos" />
+    <meta
+      property="og:description"
+      content="Monitore produtos, lotes, movimentacoes, alertas e notas fiscais em um sistema NoSQL com FastAPI e MongoDB."
+    />
+    <meta property="og:url" content="https://nosql-suply.free.nf/" />
+    <meta property="og:image" content="https://nosql-suply.free.nf/og-image.png" />
+    <meta property="og:image:secure_url" content="https://nosql-suply.free.nf/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Origem Certa: rastreamento de cadeia de suprimentos" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Origem Certa | Rastreamento de cadeia de suprimentos" />
+    <meta
+      name="twitter:description"
+      content="Valide origem, rota e auditoria de produtos com NoSQL, FastAPI e MongoDB."
+    />
+    <meta name="twitter:image" content="https://nosql-suply.free.nf/og-image.png" />
+    <title>Origem Certa | Rastreamento de cadeia de suprimentos</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css?v=20260617-15" />
   </head>
   <body>
     <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+    <div class="site-loader" aria-hidden="true">
+      <div class="loader-glow"></div>
+      <div class="loader-road"></div>
+      <div class="loader-smoke smoke-one"></div>
+      <div class="loader-smoke smoke-two"></div>
+      <div class="loader-smoke smoke-three"></div>
+      <div class="loader-truck">
+        <span class="loader-truck-box"></span>
+        <span class="loader-truck-cab"></span>
+        <span class="loader-truck-wheel loader-truck-wheel-one"></span>
+        <span class="loader-truck-wheel loader-truck-wheel-two"></span>
+      </div>
+      <strong>ORIGEM CERTA</strong>
+    </div>
 
     <header class="site-header" data-elevated="false">
       <nav class="nav-shell" aria-label="Navegação principal">
@@ -33,6 +79,14 @@
           <a href="#seguranca">Segurança</a>
           <a href="#contato">Contato</a>
           <a class="nav-cta" href="#rastreamento">Verificar produto</a>
+        </div>
+        <div class="nav-delivery-line" aria-hidden="true">
+          <span class="nav-mini-truck">
+            <span class="nav-mini-box"></span>
+            <span class="nav-mini-cab"></span>
+            <span class="nav-mini-wheel nav-mini-wheel-one"></span>
+            <span class="nav-mini-wheel nav-mini-wheel-two"></span>
+          </span>
         </div>
       </nav>
     </header>
@@ -57,25 +111,37 @@
         </div>
 
         <div class="hero-visual reveal" aria-label="Representação visual da cadeia de suprimentos">
-          <div class="stage">
-            <div class="pillar pillar-small"></div>
-            <div class="pillar pillar-mid"></div>
-            <div class="pillar pillar-tall">
-              <span class="beacon"></span>
-            </div>
-          </div>
-          <div class="hero-mini-card">
-            <span class="status-pill ok">verificado</span>
-            <strong>CAF-ORG-0001</strong>
-            <small>Café Orgânico 500g</small>
-          </div>
+          <img
+            class="hero-illustration"
+            src="hero-illustration.svg"
+            alt="Caminhão de entrega, celular com checklist e marcador de localização"
+          />
         </div>
         <a class="scroll-cue" href="#rastreamento" aria-label="Ir para rastreamento">↓</a>
       </section>
 
-      <section class="summary reveal" aria-labelledby="resumo-title">
+      <section class="flow-section section-shell" aria-label="Etapas do rastreamento">
+        <div class="flow-line" aria-hidden="true"></div>
+        <article class="flow-step reveal">
+          <span>01</span>
+          <strong>captura</strong>
+          <p>Produto, lote e nota entram na cadeia.</p>
+        </article>
+        <article class="flow-step reveal">
+          <span>02</span>
+          <strong>validação</strong>
+          <p>Rota, local e quantidade são comparados.</p>
+        </article>
+        <article class="flow-step reveal">
+          <span>03</span>
+          <strong>auditoria</strong>
+          <p>Alertas revelam risco e origem suspeita.</p>
+        </article>
+      </section>
+
+      <section class="summary reveal-section" aria-labelledby="resumo-title">
         <div class="summary-inner section-shell">
-          <div class="summary-heading">
+          <div class="summary-heading reveal">
           <p class="eyebrow">painel resumido</p>
           <h2 id="resumo-title">indicadores em tempo real</h2>
           </div>
@@ -101,6 +167,7 @@
               <small>tentativas críticas</small>
             </article>
           </div>
+          <p class="api-status" id="apiStatus">Conectando à API...</p>
         </div>
       </section>
 
@@ -137,15 +204,21 @@
 
           <div class="panel-grid">
             <section class="list-panel" aria-label="Lista de registros">
-              <div id="recordList" class="record-list"></div>
+              <details class="record-dropdown">
+                <summary>
+                  <span id="recordSummaryTitle">Rastreios disponíveis</span>
+                  <strong id="recordCount">0</strong>
+                </summary>
+                <div id="recordList" class="record-list"></div>
+              </details>
             </section>
             <aside class="detail-panel" id="detailPanel" aria-label="Detalhes do produto"></aside>
           </div>
         </div>
       </section>
 
-      <section class="auth-section section-shell reveal" aria-labelledby="auth-title">
-        <div>
+      <section class="auth-section section-shell reveal-section" aria-labelledby="auth-title">
+        <div class="reveal">
           <p class="eyebrow">autenticação</p>
           <h2 id="auth-title">quem pode consultar?</h2>
         </div>
@@ -173,8 +246,8 @@
         </div>
       </section>
 
-      <section class="risk-section section-shell reveal" aria-labelledby="risco-title">
-        <div class="risk-copy">
+      <section class="risk-section section-shell reveal-section" aria-labelledby="risco-title">
+        <div class="risk-copy reveal">
           <p class="eyebrow">análise de fraude</p>
           <h2 id="risco-title">risco claro, sem alarmismo visual</h2>
           <p>
@@ -228,8 +301,8 @@
         </div>
       </section>
 
-      <section class="benefits section-shell reveal">
-        <div>
+      <section class="benefits section-shell reveal-section">
+        <div class="reveal">
           <p class="eyebrow">benefícios</p>
           <h2>uma visão para cada participante da cadeia</h2>
         </div>
@@ -256,7 +329,7 @@
         </div>
       </section>
 
-      <section class="final-cta section-shell reveal" id="contato">
+      <section class="final-cta section-shell reveal-section" id="contato">
         <h2>a confiança começa na origem.</h2>
         <p>Transforme movimentações em evidências e alertas em decisões auditáveis.</p>
         <div>
@@ -282,6 +355,6 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="app.js?v=20260617-15"></script>
   </body>
 </html>

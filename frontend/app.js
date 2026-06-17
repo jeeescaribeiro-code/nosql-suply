@@ -28,6 +28,9 @@ let state = {
   apiOnline: true,
 };
 
+let eventsReady = false;
+let revealReady = false;
+
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
@@ -418,6 +421,9 @@ function renderDetails(produto = state.selected, selectedAlert = state.selectedA
 }
 
 function setupEvents() {
+  if (eventsReady) return;
+  eventsReady = true;
+
   $(".menu-toggle").addEventListener("click", (event) => {
     const open = event.currentTarget.getAttribute("aria-expanded") === "true";
     event.currentTarget.setAttribute("aria-expanded", String(!open));
@@ -476,8 +482,11 @@ function setupEvents() {
 }
 
 function setupReveal() {
+  if (revealReady) return;
+  revealReady = true;
+
   document
-    .querySelectorAll(".metric-card, .step-card, .benefit-grid article, .security-grid span, .risk-card, .app-panel")
+    .querySelectorAll(".reveal-section, .metric-card, .step-card, .benefit-grid article, .security-grid span, .risk-card, .app-panel")
     .forEach((item, index) => {
       item.classList.add("reveal");
       item.style.transitionDelay = `${Math.min(index % 4, 3) * 90}ms`;
@@ -498,7 +507,7 @@ function setupReveal() {
         if (entry.isIntersecting) entry.target.classList.add("is-visible");
       });
     },
-    { threshold: 0.12 },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.06 },
   );
   $$(".reveal").forEach((item) => observer.observe(item));
 }
