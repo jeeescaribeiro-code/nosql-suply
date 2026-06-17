@@ -125,6 +125,30 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+async def root():
+    return {
+        "name": "API de Rastreamento de Cadeia de Suprimentos",
+        "status": "online",
+        "docs": "/docs",
+        "health": "/health",
+        "endpoints": [
+            "/api/stats",
+            "/api/produtos",
+            "/api/lotes",
+            "/api/movimentacoes",
+            "/api/alertas",
+            "/api/locais",
+            "/api/notas-fiscais",
+        ],
+    }
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return {}
+
+
 @app.get("/health")
 async def health():
     return {"status": "online", "timestamp": datetime.now(timezone.utc).isoformat()}
